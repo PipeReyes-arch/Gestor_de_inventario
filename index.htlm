@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Inventario - Control de Capacidad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📦 Gestor de Inventario</h1>
+                <p class="subtitle">Control de capacidad máxima: 8kg</p>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- SECCION IZQUIERDA: CAPACIDAD E INVENTARIO -->
+            <div class="left-section">
+                <!-- BARRA DE CAPACIDAD -->
+                <div class="card capacity-card">
+                    <h2>Capacidad Disponible</h2>
+                    <div class="capacity-info">
+                        <div class="stat-item">
+                            <span class="stat-label">Usado:</span>
+                            <span class="stat-value" id="usedWeight">0</span>
+                            <span class="stat-unit">kg</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Disponible:</span>
+                            <span class="stat-value" id="availableWeight">8</span>
+                            <span class="stat-unit">kg</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total:</span>
+                            <span class="stat-value">8.0</span>
+                            <span class="stat-unit">kg</span>
+                        </div>
+                    </div>
+
+                    <div class="capacity-bar-container">
+                        <div class="capacity-bar" id="capacityBar"></div>
+                    </div>
+                    <div class="capacity-percentage">
+                        <span id="capacityPercent">0%</span>
+                    </div>
+                </div>
+
+                <!-- TABLA DE INVENTARIO -->
+                <div class="card inventory-card">
+                    <h2>📋 Inventario Actual</h2>
+                    <div class="table-container">
+                        <table id="inventoryTable" class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>Artículo</th>
+                                    <th>Kilos</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr class="empty-row">
+                                    <td colspan="3">No hay artículos registrados</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- BOTONES DE CONTROL -->
+                    <div class="table-actions">
+                        <button id="resetAllBtn" class="btn btn-reset">🗑️ Limpiar Todo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCION DERECHA: ITEMS PREDEFINIDOS -->
+            <div class="right-section">
+                <div class="card preset-card">
+                    <h2>⭐ Selecciona un artículo para agregar</h2>
+                    <div class="preset-items-grid">
+                        <button class="preset-btn" onclick="addPresetDirect('Leche', 1)">🥛 Leche en polvo (1kg)</button>
+                        <button class="preset-btn" onclick="addPresetDirect('Pan', 1)">🍞 Pan (1kg)</button>
+                        <button class="preset-btn" onclick="addPresetDirect('Carne', 3)">🥩 Carne (3kg)</button>
+                        <button class="preset-btn" onclick="addPresetDirect('Frutas', 2)">🍎 Frutas (2kg)</button>
+                        <button class="preset-btn" onclick="addPresetDirect('Arroz', 2)">🍚 Arroz (2kg)</button>
+                        <button class="preset-btn" onclick="addPresetDirect('Huevos', 1)">🥚 Huevos (1kg)</button>
+                    </div>
+                    <div id="formMessage" class="message"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p></p>
+        </footer>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN -->
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modalTitle">Confirmar acción</h3>
+            <p id="modalMessage">¿Está seguro de que desea continuar?</p>
+            <div class="modal-actions">
+                <button id="confirmBtn" class="btn btn-danger">Confirmar</button>
+                <button id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
